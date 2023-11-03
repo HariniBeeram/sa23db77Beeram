@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1=title
+  - var Gun_names = ["gun1.jpg", "gun2.jpg", "gun3.jpg", "gun4.jpg", "gun5.jpg"]
+
+  - for (let i = 0; i < 3; i++)
+    - let randomIndex = Math.floor(Math.random() * 5)
+
+    img(
+      src=`/images/${Gun_names[randomIndex]}`, 
+      alt=`($[randomIndex]+1)image`,
+      height="300",
+      width="300"   
+    )
+
+
+
+  
+ 
+
