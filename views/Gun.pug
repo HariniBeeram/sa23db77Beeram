@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  - var Gun=[{Name: "Glock-19", price: 550, version: 5}, {Name: "AR", price: 500, version: 15}, {Name: "Remington", price: 400, version: 16}]
+  - var Gun=[{name: "Glock-19", price: 550, version: 5}, {name: "AR", price: 500, version: 15}, {name: "Remington", price: 400, version: 16}]
   div(class="container-fluid")
     div(class="row")
       each f, index in Gun
