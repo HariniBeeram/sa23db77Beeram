@@ -3,10 +3,17 @@ var Gun = require('../models/Gun');
 exports.Gun_list = function(req, res) {
 res.send('NOT IMPLEMENTED: Gun list');
 };
-// for a specific Gun.
-exports.Gun_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Gun detail: ' + req.params.id);
-};
+// for a specific Costume.
+exports.Gun_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await Gun.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
 // Handle Gun create on POST.
 exports.Gun_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: Gun create POST');
@@ -15,9 +22,26 @@ res.send('NOT IMPLEMENTED: Gun create POST');
 exports.Gun_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: Gun delete DELETE ' + req.params.id);
 };
-// Handle Gun update form on PUT.
-exports.Gun_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: Gun update PUT' + req.params.id);
+// Handle Costume update form on PUT.
+exports.Gun_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await Gun.findById( req.params.id)
+// Do updates of properties
+if(req.body.Gun_type)
+toUpdate.Gun_type = req.body.Gun_type;
+if(req.body.name) toUpdate.name = req.body.name;
+if(req.body.price) toUpdate.size = req.body.price;
+if(req.body.version) toUpdate.version = req.body.version;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
 };
 
 // List of all Gun
@@ -65,6 +89,10 @@ exports.Gun_create_post = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+
+
+   
+
     
     
 
