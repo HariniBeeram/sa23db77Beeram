@@ -11,10 +11,8 @@ res.send('NOT IMPLEMENTED: Gun detail: ' + req.params.id);
 exports.Gun_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: Gun create POST');
 };
-// Handle Gun delete form on DELETE.
-exports.Gun_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Gun delete DELETE ' + req.params.id);
-};
+
+    
 // Handle Gun update form on PUT.
 exports.Gun_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: Gun update PUT' + req.params.id);
@@ -64,7 +62,19 @@ exports.Gun_create_post = async function(req, res) {
     res.status(500);
     res.send(`{"error": ${err}}`);
     }
-    };
+};
+// Handle Gun delete on DELETE.
+exports.Gun_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Gun.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+};
     
     
 
