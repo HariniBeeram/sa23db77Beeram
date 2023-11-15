@@ -17,4 +17,4 @@ router.put('/Gun/:id', Gun_controller.Gun_update_put);
 router.get('/Gun/:id', Gun_controller.Gun_detail);
 // GET request for list of all Gun items.
 router.get('/Gun', Gun_controller.Gun_list);
-module.exports = router
+module.exports = router;

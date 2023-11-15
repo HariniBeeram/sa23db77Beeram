@@ -62,9 +62,10 @@ exports.Gun_create_post = async function(req, res) {
     res.status(500);
     res.send(`{"error": ${err}}`);
     }
-};
-// Handle Gun delete on DELETE.
-exports.Gun_delete = async function(req, res) {
+    };
+
+    // Handle Gun delete on DELETE.
+    exports.Gun_delete = async function(req, res) {
     console.log("delete " + req.params.id)
     try {
     result = await Gun.findByIdAndDelete( req.params.id)
@@ -74,7 +75,8 @@ exports.Gun_delete = async function(req, res) {
     res.status(500)
     res.send(`{"error": Error deleting ${err}}`);
     }
-};
+    };
+    
     
     
 
