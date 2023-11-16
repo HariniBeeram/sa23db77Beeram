@@ -1,20 +1,21 @@
 extends layout
+
 block content
-h1= title
-- let Gun_id = toShow._id
-- let Gun_type = toShow.Gun_type
-- let Guncost = toShow.cost
-- let Gunsize = toShow.size
-div
-div.row
-div(class='GunAttr mr-3') Gun ID is:
-div #{Gun_id}
-div.row
-div(class='GunAttr mr-3') Gun Type is:
-div #{Gun_type}
-div.row
-div(class='GunAttr mr-3') Gun Size is:
-div #{Gun_size}
-div.row
-div(class='GunAttr mr-3') Gun Cost is:
-div #{Gun_cost}
+  h1= title
+  - let name = toShow.name
+  - let price = toShow.price
+  - let version = toShow.version
+  
+
+  div
+    div.row
+      div(class='GunAttr mr-3') Gun name is:
+      div #{Gun_name}
+    div.row
+      div(class='GunAttr mr-3') Gun price is:
+      div #{Gun_price}
+    div.row
+      div(class='GunAttr mr-3') Gun version is:
+      div #{Gun_version}
+    div.row
+     
