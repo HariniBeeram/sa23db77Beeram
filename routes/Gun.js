@@ -10,4 +10,7 @@ router.get('/', function(req, res, next) {
 /* GET Gun */
 router.get('/', Gun_controllers.Gun_view_all_Page );
 router.get('/Gun/:id', Gun_controllers.Gun_detail);
+
+/* GET detail Gun page */
+router.get('/detail', Gun_controlers.Gun_view_one_Page);
 module.exports = router;

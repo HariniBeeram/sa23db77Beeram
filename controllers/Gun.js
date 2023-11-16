@@ -30,18 +30,19 @@ exports.Gun_list = async function(req, res) {
     }
     };
 
-    // VIEWS
-    // Handle a show all view
-    exports.Gun_view_all_Page = async function(req, res) {
+    // Handle a show one view with id specified by query
+exports.Gun_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
     try{
-    theGun = await Gun.find();
-    res.render('Gun', { title: 'Gun Search Results', results: theGun });
+    result = await Gun.findById( req.query.id)
+    res.render('Gundetail',
+    { title: 'Gun Detail', toShow: result });
     }
     catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
-    };
+    }
 
 // Handle Gun create on POST.
 exports.Gun_create_post = async function(req, res) {
