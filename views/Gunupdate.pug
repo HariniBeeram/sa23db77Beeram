@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+  - let Gunid = toShow._id
+  - let Gunname = toShow.name
+  - let Gunprice = toShow.price
+  - let Gunversion = toShow.version
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{Gunid}
+
+  - let actionid = "/resource/Gun/" + Gunid
+  form(id='GunForm', action=actionid, method="PUT")
+    div.form-group
+      label.GunAttr(for='name') Gun name
+      input#GunName(type='text', name='name', value=Gunname)
+    div.form-group
+      label.GunAttr(for='price') Gun price 
+      input#GunPrice(type='number', name='price', value=Gunprice)
+    div.form-group
+      label.GunAttr(for='version') Gun version
+      input#GunVersion(type='number', name='version', value=Gunversion)
+    input(type="submit")
+
+  script.
+    document.forms['GunForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO: Show user that the form is being submitted, if necessary
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target))
+      })
+      .then((resp) => resp.json())
+      .then((body) => {
+        // TODO: Handle the response body
+        alert("Update succeeded");
+      })
+      .catch((error) => {
+        // TODO: Handle the error
+        alert("Update failed: " + error);
+      });
+    });

@@ -11,11 +11,10 @@ const GunSchema = mongoose.Schema({
     version:{
         type:Number,
         required: true, 
-        min: 0,
-        max: 50000
+       
         
     }
 });
-module.exports = mongoose.model("Gun",GunSchema)
+module.exports = mongoose.model("Gun",GunSchema);
 
 
