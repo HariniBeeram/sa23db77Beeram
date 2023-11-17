@@ -12,20 +12,8 @@ block content
     div #{Gunid}
 
   - let items = results || []; // Ensure items is defined and not null
-
-  div(class="container-fluid")
-    div(class="row")
-      each item in items
-        div(class="row-sm-2 m-1")
-          | Item #{item.Gunname}(#{item.Gunprice}) is #{item.Gunversion}
-
-  div(class="container-fluid")
-    div(class="row m-1")
-      each item in items
-        - let destination = `dispatch("/Gun/update?id=${item._id}")`
-        div(class="row-sm-2 m-1") 
-          | Item #{item.Gunname}(#{item.Gunprice}) is #{item.Gunversion}
-          button.btn(class="btn btn-primary ml-1", onclick=destination) Update
+  - let destination = `dispatch("/Gun/update?id=${item._id}")`
+      button.btn(class="btn btn-primary ml-1", onclick=destination) Update
 
   script.
     function dispatch(path) {

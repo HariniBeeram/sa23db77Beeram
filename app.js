@@ -53,9 +53,9 @@ app.use(require('express-session')({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false
-  }));
-  app.use(passport.initialize());
-  app.use(passport.session());
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -121,23 +121,12 @@ async function recreateDB(){
   })
   })
   )
-
-  const mongoose = require('mongoose');
-  const Schema = mongoose.Schema;
-  const passportLocalMongoose = require("passport-local-mongoose");
-  
-  // Define the account schema
-  const accountSchema = new Schema({
-    username: String,
-    password: String
-  });
-  
-  // Apply the passportLocalMongoose plugin to the schema
-  accountSchema.plugin(passportLocalMongoose);
-  
-  // Export the model based on the schema
-  module.exports = mongoose.model("Account", accountSchema);
-  
-
+  // passport config
+  // Use the existing connection
+  // The Account model
+  var Account =require('./models/account');
+  passport.use(new LocalStrategy(Account.authenticate()));
+  passport.serializeUser(Account.serializeUser());
+  passport.deserializeUser(Account.deserializeUser());
 
 module.exports = app;
