@@ -2,27 +2,27 @@ extends layout
 
 block content
   h1= title
-  - let Gunid = toShow._id 
-  - let Gunname = toShow.name
-  - let Gunprice = toShow.price
-  - let Gunversion = toShow.version
+
+  - if toShow
+    - let Gunid = toShow._id 
+    - let Gunname = toShow.name
+    - let Gunprice = toShow.price
+    - let Gunversion = toShow.version
+
+    div
+      div.row
+        div(class='GunAttr mr-3') Gun ID is:
+          div #{Gunid}
+          br
+      div.row
+        div(class='GunAttr mr-3') Gun name is:
+          div #{Gunname}
+          br
+      div.row
+        div(class='GunAttr mr-3') Gun price is:
+          div #{Gunprice}
+          br
+      div.row
+        div(class='GunAttr mr-3') Gun version is:
+          div #{Gunversion}
   
-
-  div
-    div.row
-      div(class='GunAttr mr-3') Gun ID  is:
-        div #{Gunid}
-        br
-    div.row
-      div(class='GunAttr mr-3') Gun name is:
-        div #{Gunname}
-        br
-    div.row
-      div(class='GunAttr mr-3') Gun price  is:
-        div #{Gunprice}
-        br
-    div.row
-      div(class='GunAttr mr-3') Gun version  is:
-        div #{Gunversion}
-
-     
