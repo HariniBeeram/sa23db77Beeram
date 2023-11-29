@@ -4,7 +4,7 @@ block content
   h1=title
   p Welcome to #{title} 
   p How do you do?
-  button(type="button", class="btn btn-secondary" onclick="goFaster()") Press me 
+  button(type="button", class="btn btn-secondary", onclick="goFaster()") Press me 
   
   div#faster Increase the speed 
   script.
@@ -15,7 +15,7 @@ block content
       change += 1;
       document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`; 
     }
+    
    br
   a(href='http://localhost:3000/Gun') Click Here to Visit Gun Website
-
 
