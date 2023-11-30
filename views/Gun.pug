@@ -2,20 +2,29 @@ extends layout
 
 block content
   h1= title
-   - let result = results;
-  - var Gun=[{name: "Glock-19", price: 550, version: 5}, {name: "AR", price: 500, version: 15}, {name: "Remington", price: 400, version: 16}]
-  div(class="container-fluid mt-3")
-  div(class="row m-1")
-   each result,index in results
-    - let destination = `/Gun/update?id=${result._id}`
-    div(class="col-sm-2" onclick =`buy(${index})`) #{result.Name}, #{result.price}, #{result.version}
-    button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
-    script.
-        function buy(a)
-        {
-            alert(`You purchased Item ${a+1}`)
-        }
-        function dispatch(path) {
-      
-          window.location.href = path;
-        }
+  
+  - let results = results;
+  - var Gun = [{ name: "Glock-19", price: 550, version: 5 }, { name: "AR", price: 500, version: 15 }, { name: "Remington", price: 400, version: 16 }]
+
+  .container-fluid
+    .row.m-1 
+      each result, index in results
+        .col-sm-2
+          - let destination = `/Gun/update?id=${result._id}`
+          h2= result.name
+          p= Price: ${result.price.toFixed(2)}
+          p= version: ${result.version}
+          div(
+            onclick=`buy(${index})`
+          ) Purchase
+          button.btn(class="btn-primary ml-1", onclick=`dispatch('${destination}')`) Update
+          a(class="btn btn-danger" href=`/Gun/delete?id=${result._id}`) Delete
+          a(class="btn btn-dark" href=`/Gun/detail?id=${result._id}`) Details
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}.`);
+    }
+
+    function dispatch(path){
+      window.location.href = path;
+    }

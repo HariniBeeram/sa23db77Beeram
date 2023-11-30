@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  - if toShow
+  if toShow
     - let Gunid = toShow._id 
     - let Gunname = toShow.name
     - let Gunprice = toShow.price
@@ -11,18 +11,17 @@ block content
 
     div
       div.row
-        div(class='GunAttr mr-3') Gun ID is:
+        div.GunAttr.mr-3 Gun ID is:
           div #{Gunid}
           br
       div.row
-        div(class='GunAttr mr-3') Gun name is:
+        div.GunAttr.mr-3 Gun name is:
           div #{Gunname}
           br
       div.row
-        div(class='GunAttr mr-3') Gun price is:
+        div.GunAttr.mr-3 Gun price is:
           div #{Gunprice}
           br
       div.row
-        div(class='GunAttr mr-3') Gun version is:
+        div.GunAttr.mr-3 Gun version is:
           div #{Gunversion}
-  

@@ -3,30 +3,30 @@ extends layout
 block content
   h1= title
   form(id='GunForm', action="/resource/Gun", method="POST")
-    div.form-group-create
+    .form-group-create
       label.GunAttr(for='name') Gun name
-      input#Gunname(type='text', name='name')
-    div.form-group-create
+      input#Gunname.form-control(type='text', name='name', required)
+    .form-group-create
       label.GunAttr(for='price') Gun price 
-      input#Gunprice(type='number', name='price')
-    div.form-group-create
+      input#Gunprice.form-control(type='number', name='price', required)
+    .form-group-create
       label.GunAttr(for='version') Gun version
-      input#Gunversion(type='number', name='version')
-    input(type="submit")
+      input#Gunversion.form-control(type='number', name='version', required)
+    input.btn.btn-primary(type="submit", value="Submit")
     script.
       document.forms['GunForm'].addEventListener('submit', (event) => {
         event.preventDefault();
-        // TODO do something here to show the user that the form is being submitted
+        // TODO: Show loading indicator or disable the submit button to indicate form submission
         fetch(event.target.action, {
           method: 'POST',
-          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          body: new URLSearchParams(new FormData(event.target))
         }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
+          return resp.json();
         }).then((body) => {
-          alert("Save succeeded")
-          // TODO handle the body
+          // TODO: Handle the response from the server
+          alert("Save succeeded");
         }).catch((error) => {
-          // TODO handle the error
-          alert("Save failed " + error )
+          // TODO: Handle the error
+          alert("Save failed: " + error);
         });
       });

@@ -1,21 +1,12 @@
 extends layout
 
 block content
-  h1=title
-  p Welcome to #{title} 
-  p How do you do?
-  button(type="button", class="btn btn-secondary", onclick="goFaster()") Press me 
-  
-  div#faster Increase the speed 
-  script.
-    let mph = 20;
-    let change = 1;
-    function goFaster() {
-      mph += change;
-      change += 1;
-      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`; 
-    }
-    
-   br
-  a(href='http://localhost:3000/Gun') Click Here to Visit Gun Website
-
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/Gun") Take me to Guns
+    br
+    a(href="/logout") Logout

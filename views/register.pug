@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container
+    h1= title
+    h2= message
+    br
+    // Registration form
+    form(role='form', action="/register", method="post", style='max-width: 300px;')
+      // Username input
+      .form-group
+        input.form-control(type='text', name="username", placeholder='Enter Username')
+
+      // Password input
+      .form-group
+        input.form-control(type='password', name="password", placeholder='Password')
+
+      // Submit button
+      button.btn.btn-default(type='submit') Submit
+
+      // Cancel button that redirects to the home page ('/')
+      a(href='/')
+        button.btn.btn-primary(type="button") Cancel

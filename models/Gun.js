@@ -11,6 +11,8 @@ const GunSchema = mongoose.Schema({
     version:{
         type:Number,
         required: true, 
+        min:0,
+        max:5000
        
         
     }
